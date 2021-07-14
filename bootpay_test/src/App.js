@@ -1,6 +1,11 @@
+import React from "react";
+import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import MainPage from "./components/main_page/main_page";
+import Navbar from "./components/navbar/navbar";
+import Join from "./components/join/join";
+import Login from "./components/login/login";
 
-const App = ({bootpayAPI}) => {
+const App = ({bootpayAPI, userAPI}) => {
   const items = [
     {
       img: "https://www.costco.co.kr/medias/sys_master/images/h64/h96/9867844452382.jpg",
@@ -34,11 +39,21 @@ const App = ({bootpayAPI}) => {
     },
   ]
 
-
   return (
-    <div>
-      <MainPage items={items} bootpayAPI={bootpayAPI}/> 
-    </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <MainPage items={items} bootpayAPI={bootpayAPI}/> 
+          </Route>
+          <Route exact path="/join" >
+            <Join userAPI={userAPI}/>
+          </Route>
+          <Route exact path="/login">
+            <Login userAPI={userAPI}/>
+          </Route>
+        </Switch>
+      </Router>
   )
 }
 

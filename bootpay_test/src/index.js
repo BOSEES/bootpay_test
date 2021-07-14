@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import BootpayAPI from "./bootpay/payment_api";
+import BootpayAPI from "./service/payment_api";
+import UserAPI from "./service/user_api";
 
 const bootpayAPI = new BootpayAPI();
+const userAPI = new UserAPI();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App bootpayAPI={bootpayAPI}/>
+    <App bootpayAPI={bootpayAPI} userAPI={userAPI}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
