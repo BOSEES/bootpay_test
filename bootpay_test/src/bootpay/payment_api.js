@@ -1,12 +1,12 @@
 import Bootpay from "bootpay-js";
 
 class BootpayAPI {  
-  onPayment = (name,price,item,userInfo,guid) => {
-    BootPay.request({
-      price: '1000', //실제 결제되는 가격
+  payment = (name,price,item,userInfo) => {
+    Bootpay.request({
+      price: price, //실제 결제되는 가격
       application_id: "59a4d323396fa607cbe75de4",
       name: name, //결제창에서 보여질 이름
-      pg: '',
+      pg: 'danal',
       method: '', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
       show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
       items: [
@@ -30,7 +30,7 @@ class BootpayAPI {
       //   phone: '010-1234-4567'
       // }
       ,
-      order_id: guid, //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+      order_id: guid(), //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
       params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
       account_expire_at: '2020-10-25', // 가상계좌 입금기간 제한 ( yyyy-mm-dd 포멧으로 입력해주세요. 가상계좌만 적용됩니다. )
       extra: {
@@ -57,9 +57,9 @@ class BootpayAPI {
       console.log(data);
       var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
       if (enable) {
-        BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
+        Bootpay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
       } else {
-        BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
+        Bootpay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
       }
     }).close(function (data) {
         // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
@@ -76,3 +76,11 @@ class BootpayAPI {
     return now.getFullYear() + now.getMonth + now.getDate();
   }
 }
+function guid() {
+  function s4() {
+    return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+export default BootpayAPI;
