@@ -12,10 +12,10 @@ const Item = ({item, bootpayAPI}) => {
     event.preventDefault();
     const prices = price * (qtyRef.current.value || 1);
     const userInfo = {
-        username: '사용자 이름',
-        email: '사용자 이메일',
+        username: '김영일',
+        email: 'rladuddlf3@naver.com',
         addr: '사용자 주소',
-        phone: '010-1234-4567'
+        phone: '010-7358-7351'
       }
     const itemObj = {
       item_name: item.item_name,
