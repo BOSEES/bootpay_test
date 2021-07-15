@@ -5,7 +5,6 @@ const Login = ({ userAPI, setUser}) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-
   const onLogin = (event) => {
     event.preventDefault();
     const user = {
@@ -17,7 +16,7 @@ const Login = ({ userAPI, setUser}) => {
       if (response.data.loginSuccess) {
         window.localStorage.setItem("user", JSON.stringify(response.data.userInfo))
         window.localStorage.setItem("token", response.data.token);
-        setUser("무야호");
+        setUser(JSON.parse(window.localStorage.getItem("user")));
         return alert("로그인 성공");
       } else {
         console.log(response);
