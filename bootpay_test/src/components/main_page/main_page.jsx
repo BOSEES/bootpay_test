@@ -1,7 +1,30 @@
 import styles from "./main_page.module.css";
 import Item from "../item/item";
+import { useEffect } from "react";
 
-const MainPage = ({items,bootpayAPI}) => {
+const MainPage = ({items, bootpayAPI, userAPI}) => {
+
+  const userCheck = () => {
+    const config = {
+      headers: {
+        token: window.localStorage.getItem("token")
+      }
+    }
+
+    userAPI.check(config)
+    .then((response) => {
+      return console.log(response);
+    })
+    .catch((error) => {
+      window.localStorage.clear();
+      return error;
+    })
+  }
+
+  useEffect(() => {
+    userCheck();
+  },[]);
+
   return (
     <div>
       <nav>

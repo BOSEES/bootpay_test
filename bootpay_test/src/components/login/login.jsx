@@ -1,7 +1,7 @@
 import {useRef} from "react";
 import styles from "./login.module.css";
 
-const Login = ({ userAPI }) => {
+const Login = ({ userAPI, setUser}) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -15,7 +15,9 @@ const Login = ({ userAPI }) => {
     userAPI.login(user)
     .then((response) => {
       if (response.data.loginSuccess) {
-        console.log(response)
+        window.localStorage.setItem("user", JSON.stringify(response.data.userInfo))
+        window.localStorage.setItem("token", response.data.token);
+        setUser("무야호");
         return alert("로그인 성공");
       } else {
         console.log(response);

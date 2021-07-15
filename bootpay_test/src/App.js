@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import MainPage from "./components/main_page/main_page";
 import Navbar from "./components/navbar/navbar";
@@ -6,6 +6,7 @@ import Join from "./components/join/join";
 import Login from "./components/login/login";
 
 const App = ({bootpayAPI, userAPI}) => {
+  const [user,setUser] = useState({});
   const items = [
     {
       img: "https://www.costco.co.kr/medias/sys_master/images/h64/h96/9867844452382.jpg",
@@ -39,18 +40,21 @@ const App = ({bootpayAPI, userAPI}) => {
     },
   ]
 
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("user")));
+  },[]);
   return (
       <Router>
-        <Navbar />
+        <Navbar user={user} />
         <Switch>
           <Route exact path="/">
-            <MainPage items={items} bootpayAPI={bootpayAPI}/> 
+            <MainPage items={items} bootpayAPI={bootpayAPI} userAPI={userAPI}/> 
           </Route>
           <Route exact path="/join" >
             <Join userAPI={userAPI}/>
           </Route>
           <Route exact path="/login">
-            <Login userAPI={userAPI}/>
+            <Login userAPI={userAPI} setUser={setUser}/>
           </Route>
         </Switch>
       </Router>
