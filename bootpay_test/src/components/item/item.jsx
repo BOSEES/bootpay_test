@@ -1,7 +1,7 @@
 import styles from "./item.module.css";
 import {useRef} from "react";
 
-const Item = ({item, bootpayAPI}) => {
+const Item = ({item, bootpayAPI }) => {
   const nameRef = useRef();
   const qtyRef = useRef();
   const priceRef = useRef();
@@ -27,7 +27,11 @@ const Item = ({item, bootpayAPI}) => {
       cat3: item.cat3
     }
 
-    bootpayAPI.payment(name,prices,itemObj,userInfo);
+    bootpayAPI.payment(name,prices,itemObj,userInfo)
+    .then((response) => {
+      const receiptId = response.data.receipt_id;
+      
+    });
   }
 
   return (

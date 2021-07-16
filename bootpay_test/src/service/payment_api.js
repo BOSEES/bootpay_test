@@ -71,6 +71,11 @@ class BootpayAPI {
     });
   }
 
+  verifyPayment = async (obj) => {
+    const data = await axios.post("http://localhost:7351/verify/paycheck",obj);
+    return data;
+  }
+
   getDate = () => {
     const now = new Date();
     return now.getFullYear() + now.getMonth + now.getDate();

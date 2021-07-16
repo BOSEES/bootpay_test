@@ -17,6 +17,7 @@ const Login = ({ userAPI, setUser}) => {
         window.localStorage.setItem("user", JSON.stringify(response.data.userInfo))
         window.localStorage.setItem("token", response.data.token);
         setUser(JSON.parse(window.localStorage.getItem("user")));
+        console.log(response);
         return alert("로그인 성공");
       } else {
         console.log(response);

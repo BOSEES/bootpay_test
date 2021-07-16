@@ -18,7 +18,6 @@ const Join = ({userAPI}) => {
       password: passwordRef.current.value
     }
 
-    // console.log(user);
     userAPI.join(user)
     .then((response) => {
       if (response.data.success) {

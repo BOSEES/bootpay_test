@@ -2,7 +2,7 @@ import styles from "./main_page.module.css";
 import Item from "../item/item";
 import { useEffect } from "react";
 
-const MainPage = ({items, bootpayAPI, userAPI}) => {
+const MainPage = ({items, bootpayAPI, userAPI }) => {
 
   const userCheck = () => {
     const config = {
