@@ -4,6 +4,7 @@ import MainPage from "./components/main_page/main_page";
 import Navbar from "./components/navbar/navbar";
 import Join from "./components/join/join";
 import Login from "./components/login/login";
+import MyPage from "./components/my_page/my_page";
 
 const App = ({bootpayAPI, userAPI}) => {
   const [user,setUser] = useState({});
@@ -55,6 +56,9 @@ const App = ({bootpayAPI, userAPI}) => {
           </Route>
           <Route exact path="/login">
             <Login userAPI={userAPI} setUser={setUser}/>
+          </Route>
+          <Route exact path="/mypage">
+            <MyPage />
           </Route>
         </Switch>
       </Router>

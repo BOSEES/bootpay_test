@@ -28,10 +28,6 @@ const Item = ({item, bootpayAPI }) => {
     }
 
     bootpayAPI.payment(name,prices,itemObj,userInfo)
-    .then((response) => {
-      const receiptId = response.data.receipt_id;
-      
-    });
   }
 
   return (

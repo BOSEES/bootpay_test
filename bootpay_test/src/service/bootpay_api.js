@@ -1,4 +1,5 @@
 import Bootpay from "bootpay-js";
+import axios from "axios";
 
 class BootpayAPI {  
   payment = (name,price,item,userInfo) => {
@@ -68,12 +69,8 @@ class BootpayAPI {
       //결제가 정상적으로 완료되면 수행됩니다
       //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
       console.log(data);
+      verifyPayment(data);
     });
-  }
-
-  verifyPayment = async (obj) => {
-    const data = await axios.post("http://localhost:7351/verify/paycheck",obj);
-    return data;
   }
 
   getDate = () => {
@@ -81,6 +78,12 @@ class BootpayAPI {
     return now.getFullYear() + now.getMonth + now.getDate();
   }
 }
+
+async function verifyPayment(receiptId) {
+  const data = await axios.post("http://localhost:7351/verify/paycheck",receiptId);
+  return data;
+};
+
 function guid() {
   function s4() {
     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);

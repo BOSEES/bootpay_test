@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import BootpayAPI from "./service/payment_api";
+import BootpayAPI from "./service/bootpay_api";
 import UserAPI from "./service/user_api";
 
 const bootpayAPI = new BootpayAPI();
