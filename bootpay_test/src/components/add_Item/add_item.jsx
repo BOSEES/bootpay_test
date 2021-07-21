@@ -14,17 +14,24 @@ const AddItem = ({ imageUploader,itemAPI }) => {
 
   const onAddItem = async (event) => {
     event.preventDefault();
+    const config = {
+      headers: {
+        token: window.localStorage.getItem("token")
+      }
+    }
+
     const imgUrl = await imageUploader.upload(image);
     const item = {
       itemImage: imgUrl.url,
       itemName : titleRef.current.value || "없음",
-      unique: Math.floor(Math.random() * 100),
+      unique: `${Math.floor(Math.random() * 100)}`,
       price: priceRef.current.value || 0 ,
       qty: qtyRef.current.value || 1,
       category: "없음",
     }
     
-    itemAPI.addItem(item)
+
+    itemAPI.addItem(item,config)
     .then((response) => {
       console.log(response);
     })

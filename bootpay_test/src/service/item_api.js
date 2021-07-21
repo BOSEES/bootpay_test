@@ -1,8 +1,8 @@
 import axios from "axios";
 
 class ItemAPI {
-  addItem = async (item) => {
-    const data = await axios.post("http://localhost:7351/item/item",item);
+  addItem = async (item,token) => {
+    const data = await axios.post("http://localhost:7351/item/item",item,token);
     return data;
   }
 

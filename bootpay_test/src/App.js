@@ -12,7 +12,6 @@ const App = ({bootpayAPI, userAPI, itemAPI, imageUploader}) => {
   const [items, setItems] = useState([]);
 
   const readAllItem = () => {
-    console.log("test")
     itemAPI.readItems()
     .then((response) => {
       setItems(response.data.items);
@@ -31,7 +30,7 @@ const App = ({bootpayAPI, userAPI, itemAPI, imageUploader}) => {
         <Navbar user={user} />
         <Switch>
           <Route exact path="/">
-            <MainPage items={items} bootpayAPI={bootpayAPI} userAPI={userAPI}/> 
+            <MainPage user={user} items={items} bootpayAPI={bootpayAPI} userAPI={userAPI}/> 
           </Route>
           <Route exact path="/join" >
             <Join userAPI={userAPI}/>

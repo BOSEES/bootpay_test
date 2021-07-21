@@ -2,7 +2,7 @@ import styles from "./main_page.module.css";
 import Item from "../item/item";
 import { useEffect } from "react";
 
-const MainPage = ({items, bootpayAPI, userAPI }) => {
+const MainPage = ({user, items, bootpayAPI, userAPI }) => {
 
   const userCheck = () => {
     const config = {
@@ -13,7 +13,6 @@ const MainPage = ({items, bootpayAPI, userAPI }) => {
 
     userAPI.check(config)
     .then((response) => {
-      return console.log(response);
     })
     .catch((error) => {
       window.localStorage.clear();
@@ -32,7 +31,7 @@ const MainPage = ({items, bootpayAPI, userAPI }) => {
       </nav>
       <div className={styles.box}>
         {items.map((item, index) => {
-          return <Item key={index} item={item} bootpayAPI={bootpayAPI}/>
+          return <Item key={index} user={user} item={item} bootpayAPI={bootpayAPI}/>
         })}
       </div>
     </div>

@@ -1,33 +1,26 @@
 import styles from "./item.module.css";
 import {useRef} from "react";
 
-const Item = ({item, bootpayAPI }) => {
+const Item = ({item, bootpayAPI ,user}) => {
   const nameRef = useRef();
   const qtyRef = useRef();
   const priceRef = useRef();
-  const name = item.item_name;
+  const name = item.itemName;
   const price = item.price;
 
   const onPayment = (event) => {
     event.preventDefault();
     const prices = price * (qtyRef.current.value || 1);
-    const userInfo = {
-        username: '김영일',
-        email: 'rladuddlf3@naver.com',
-        addr: '사용자 주소',
-        phone: '010-7358-7351'
-      }
     const itemObj = {
-      item_name: item.item_name,
+      item_name: item.itemName,
       qty: qtyRef.current.value || 1,
       unique: item.unique,
-      price: item.price * qtyRef.current.value || 1,
-      cat1: item.cat1,
-      cat2: item.cat2,
-      cat3: item.cat3
+      price: item.price * qtyRef.current.value || item.price,
+      cat1: item.category[0] || "",
+      cat2: item.category[1] || "",
+      cat3: item.category[2] || ""
     }
-
-    bootpayAPI.payment(name,prices,itemObj,userInfo)
+    bootpayAPI.payment(name,prices,itemObj,user)
   }
 
   return (
