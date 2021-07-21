@@ -6,7 +6,7 @@ class ItemAPI {
     return data;
   }
 
-  readAllItem = async () => {
+  readItems = async () => {
     const data = await axios.get("http://localhost:7351/item/items");
     return data;
   }

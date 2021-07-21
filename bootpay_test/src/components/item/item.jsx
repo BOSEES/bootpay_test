@@ -32,9 +32,9 @@ const Item = ({item, bootpayAPI }) => {
 
   return (
     <form className={styles.item}>
-      <img className={styles.img} src={item.img} alt="물건" />
+      <img className={styles.img} src={item.itemImage} alt="물건" />
       <h2 ref={nameRef} className={styles.name}>{name}</h2>
-      <input ref={qtyRef} className={styles.qty} type="Number" placeholder="수량: 1" />
+      <input ref={qtyRef} className={styles.qty} type="Number" placeholder={`남은수량: ${item.qty}`} />
       <h3 ref={priceRef} className={styles.price}>가격: {price} </h3>
       <button className={styles.button} onClick={onPayment}>결제하기</button>
     </form>
