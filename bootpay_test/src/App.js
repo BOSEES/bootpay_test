@@ -5,8 +5,9 @@ import Navbar from "./components/navbar/navbar";
 import Join from "./components/join/join";
 import Login from "./components/login/login";
 import MyPage from "./components/my_page/my_page";
+import AddItem from "./components/add_Item/add_item";
 
-const App = ({bootpayAPI, userAPI}) => {
+const App = ({bootpayAPI, userAPI, itemAPI, imageUploader}) => {
   const [user,setUser] = useState({});
   const items = [
     {
@@ -59,6 +60,9 @@ const App = ({bootpayAPI, userAPI}) => {
           </Route>
           <Route exact path="/mypage">
             <MyPage />
+          </Route>
+          <Route exact path="/addItem">
+            <AddItem imageUploader={imageUploader} itemAPI={itemAPI} />
           </Route>
         </Switch>
       </Router>

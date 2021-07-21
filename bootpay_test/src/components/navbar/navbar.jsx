@@ -10,6 +10,7 @@ const Navbar = ({user}) => {
         <Link to="login"><li>로그인</li></Link>
         <Link to="join"><li>회원가입</li></Link>
         <Link to="mypage"><li>마이페이지</li></Link>
+        <Link to="addItem"><li>등록하기</li></Link>
       </ul>
     </nav>
   )
