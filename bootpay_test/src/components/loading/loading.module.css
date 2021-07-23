@@ -1,0 +1,12 @@
+.loading {
+  display: flex;
+  position: fixed;
+  background-color: palevioletred;
+  width: 25rem;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
+  left: 40vw;
+  top: 40vh;
+  border-radius: 4px;
+}

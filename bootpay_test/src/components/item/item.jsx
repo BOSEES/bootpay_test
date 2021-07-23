@@ -1,6 +1,7 @@
 import styles from "./item.module.css";
 import {useRef} from "react";
 
+
 const Item = ({item, bootpayAPI ,user}) => {
   const nameRef = useRef();
   const qtyRef = useRef();
@@ -12,15 +13,16 @@ const Item = ({item, bootpayAPI ,user}) => {
     event.preventDefault();
     const prices = price * (qtyRef.current.value || 1);
     const itemObj = {
+      itemImage:item.itemImage,
       item_name: item.itemName,
-      qty: qtyRef.current.value || 1,
+      qty: Number(qtyRef.current.value) || 1,
       unique: item.unique,
       price: item.price * qtyRef.current.value || item.price,
       cat1: item.category[0] || "",
       cat2: item.category[1] || "",
       cat3: item.category[2] || ""
     }
-    bootpayAPI.payment(name,prices,itemObj,user)
+    bootpayAPI.payment(name,prices,itemObj,user);
   }
 
   return (

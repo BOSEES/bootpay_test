@@ -1,7 +1,7 @@
 import styles from "./join.module.css";
 import {useRef} from "react";
 
-const Join = ({userAPI}) => {
+const Join = ({userAPI, setLoading}) => {
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
@@ -10,6 +10,7 @@ const Join = ({userAPI}) => {
   
   const onJoin = (event) => {
     event.preventDefault();
+    setLoading(true);
     const user = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -21,8 +22,10 @@ const Join = ({userAPI}) => {
     userAPI.join(user)
     .then((response) => {
       if (response.data.success) {
+        setLoading(false);
         return console.log(response);
       } else {
+        setLoading(false);
         console.log(response);
         return alert("입력을 바르게 해주세요");
       }

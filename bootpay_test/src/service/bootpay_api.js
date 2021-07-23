@@ -32,7 +32,13 @@ class BootpayAPI {
       // }
       ,
       order_id: guid(), //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
-      params: {username:userInfo.username, email:userInfo.email, qty:item.qty, unique: item.unique},
+      params: {
+        username:userInfo.username,
+        email:userInfo.email,
+        qty:item.qty,
+        unique: item.unique,
+        name:name,
+        itemImage:item.itemImage},
       account_expire_at: '2020-10-25', // 가상계좌 입금기간 제한 ( yyyy-mm-dd 포멧으로 입력해주세요. 가상계좌만 적용됩니다. )
       extra: {
           start_at: '2019-05-10', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급

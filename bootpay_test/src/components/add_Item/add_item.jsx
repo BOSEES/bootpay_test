@@ -1,7 +1,7 @@
 import styles from "./add_item.module.css";
 import {useRef, useState} from "react";
 
-const AddItem = ({ imageUploader,itemAPI }) => {
+const AddItem = ({ imageUploader,itemAPI, setLoading }) => {
   const titleRef = useRef();
   const qtyRef = useRef();
   const priceRef = useRef();
@@ -14,12 +14,12 @@ const AddItem = ({ imageUploader,itemAPI }) => {
 
   const onAddItem = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const config = {
       headers: {
         token: window.localStorage.getItem("token")
       }
     }
-
     const imgUrl = await imageUploader.upload(image);
     const item = {
       itemImage: imgUrl.url,
@@ -34,9 +34,11 @@ const AddItem = ({ imageUploader,itemAPI }) => {
     itemAPI.addItem(item,config)
     .then((response) => {
       console.log(response);
+      setLoading(false);
     })
     .catch((error) => {
       console.log(error);
+      setLoading(false);
     })
   }
 
