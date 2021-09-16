@@ -45,7 +45,7 @@ const App = ({bootpayAPI, userAPI, itemAPI, imageUploader}) => {
 
   console.log(bought);
   useEffect(() => {
-    readBoughtAll();
+    // readBoughtAll();
     readItemAll();
     setUser(JSON.parse(window.localStorage.getItem("user")));
   },[]);
